@@ -1,0 +1,131 @@
+version: "2.1"
+services:
+  mysql:
+    image: mysql
+    container_name: mysql  # Nom du conteneur
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: admin  # Mot de passe root de MySQL
+      MYSQL_DATABASE: mysql  # Nom de la base de données MySQL
+
+  mariadb:
+    image: lscr.io/linuxserver/mariadb  # Image Docker pour MariaDB
+    container_name: mariadb  # Nom du conteneur
+    environment:
+      - PUID=1000  # ID utilisateur pour l'attribution des droits de fichier
+      - PGID=1000  # ID de groupe pour l'attribution des droits de fichier
+      - MYSQL_ROOT_PASSWORD=mariadbpassword  # Mot de passe root de MariaDB
+      - TZ=Europe/Paris  # Fuseau horaire
+      - MYSQL_USER=admin  # Nom d'utilisateur de MariaDB
+      - MYSQL_PASSWORD=admin  # Mot de passe de l'utilisateur de MariaDB
+    volumes:
+      - ./mariadb/config:/config  # Montage du dossier de configuration de MariaDB
+    restart: unless-stopped
+
+  pg:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=pg
+
+  swag:
+    image: lscr.io/linuxserver/swag  # Image Docker pour SWAG (Serveur Web Automatisé de Gestion de Certificats)
+    container_name: swag  # Nom du conteneur
+    cap_add:
+      - NET_ADMIN  # Ajoute la possibilité d'accéder aux fonctionnalités réseau avancées
+    environment:
+      - PUID=1000  # ID utilisateur pour l'attribution des droits de fichier
+      - PGID=1000  # ID de groupe pour l'attribution des droits de fichier
+      - TZ=Europe/Paris  # Fuseau horaire
+      - URL=canarddns.duckdns.org  # URL de votre domaine
+      - SUBDOMAINS=wildcard  # Configuration des sous-domaines
+      - VALIDATION=duckdns  # Méthode de validation du domaine
+      - DUCKDNSTOKEN=f97e2e49-3a46-47bb-a2bd-f0340660c79c  # Token d'accès DuckDNS
+      - EMAIL=fabali123@gmail.com  # Adresse e-mail pour les notifications
+    volumes:
+      - ./swag/config:/config  # Montage du dossier de configuration de SWAG
+    ports:
+      - 443:443  # Port d'écoute HTTPS
+      - 8080:80  # Port d'écoute HTTP (facultatif)
+    restart: unless-stopped
+
+  heimdall:
+    image: lscr.io/linuxserver/heimdall:latest  # Image Docker pour Heimdall (Tableau de bord personnel)
+    container_name: heimdall  # Nom du conteneur
+    environment:
+      - PUID=1000  # ID utilisateur pour l'attribution des droits de fichier
+      - PGID=1000  # ID de groupe pour l'attribution des droits de fichier
+      - TZ=Europe/Paris  # Fuseau horaire
+    volumes:
+      - ./swag/heimdall/config:/config  # Montage du dossier de configuration de Heimdall
+    restart: unless-stopped
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    restart: always
+    environment:
+      PMA_ARBITRARY: 1
+    depends_on:
+      - mysql  # Dépendance du service MySQL
+  wordpress:
+    image: wordpress
+    container_name: wordpress
+    restart: always
+    depends_on:
+      - mysql
+    environment:
+      WORDPRESS_DB_HOST: mysql
+      WORDPRESS_DB_USER: root
+      WORDPRESS_DB_PASSWORD: admin
+      WORDPRESS_DB_NAME: mysql
+    volumes:
+      - ./wordpress:/var/www/html
+
+  nextcloud:
+    image: lscr.io/linuxserver/nextcloud
+    container_name: nextcloud
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Paris
+    volumes:
+      - /home/aptalca/appdata/nextcloud/config:/config
+      - /home/aptalca/appdata/nextcloud/data:/data
+    depends_on:
+      - mariadb
+    restart: unless-stopped
+
+  portainer:
+    image: portainer/portainer
+    container_name: portainer
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./portainer:/data
+
+  mattermost:
+    image: mattermost/mattermost-preview
+    container_name: mattermost
+    restart: always
+    volumes:
+      - ./mattermost/config:/mattermost/config
+      - ./mattermost/data:/mattermost/data
+      - ./mattermost/logs:/mattermost/logs
+
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    restart: always
+    volumes:
+      - ./prometheus/prometheus.yml
+
+  phppgadmin:
+    image: 'dpage/pgadmin4'
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: user@domain.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    
+  

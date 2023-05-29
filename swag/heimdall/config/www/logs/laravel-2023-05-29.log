@@ -1,0 +1,152 @@
+[2023-05-29 13:48:54] local.DEBUG: Process Apps dispatched  
+[2023-05-29 13:48:55] local.DEBUG: Process Apps dispatched  
+[2023-05-29 13:48:55] local.DEBUG: Update of all apps triggered!  
+[2023-05-29 13:48:55] local.DEBUG: Update of all apps finished!  
+[2023-05-29 13:48:56] local.DEBUG: Process Apps dispatched  
+[2023-05-29 13:55:14] local.DEBUG: Process Apps dispatched  
+[2023-05-29 13:58:59] local.DEBUG: Process Apps dispatched  
+[2023-05-29 14:05:56] local.DEBUG: Process Apps dispatched  
+[2023-05-29 14:12:19] local.DEBUG: Process Apps dispatched  
+[2023-05-29 14:12:31] local.DEBUG: Process Apps dispatched  
+[2023-05-29 14:14:39] local.DEBUG: Process Apps dispatched  
+[2023-05-29 14:14:43] local.DEBUG: Process Apps dispatched  
+[2023-05-29 14:14:45] local.DEBUG: Process Apps dispatched  
+[2023-05-29 14:15:33] local.DEBUG: Process Apps dispatched  
+[2023-05-29 14:15:38] local.DEBUG: Process Apps dispatched  
+[2023-05-29 14:15:41] local.DEBUG: Process Apps dispatched  
+[2023-05-29 14:15:59] local.DEBUG: Process Apps dispatched  
+[2023-05-29 14:15:59] local.DEBUG: Get app triggered for: 51ca673ea8e89a868706fd309777a101ac63a409  
+[2023-05-29 14:15:59] local.DEBUG: Download triggered for stdClass Object
+(
+    [appid] => 51ca673ea8e89a868706fd309777a101ac63a409
+    [name] => phpMyAdmin
+    [website] => https://www.phpmyadmin.net
+    [license] => GNU General Public License, version 2
+    [description] => phpMyAdmin is a free software tool written in PHP, intended to handle the administration of MySQL over the Web. phpMyAdmin supports a wide range of operations on MySQL and MariaDB. Frequently used operations (managing databases, tables, columns, relations, indexes, users, permissions, etc) can be performed via the user interface, while you still have the ability to directly execute any SQL statement.
+    [enhanced] => 
+    [tile_background] => light
+    [icon] => phpmyadmin.png
+    [sha] => 27a196e07ed93545a80f573a99bd2ed583ed7290
+    [class] => \App\SupportedApps\phpMyAdmin\phpMyAdmin
+)
+  
+[2023-05-29 14:39:06] local.DEBUG: Get app triggered for: b1909932aac1c5510c044de0cb8c0f3ef049a250  
+[2023-05-29 14:39:06] local.DEBUG: Download triggered for stdClass Object
+(
+    [appid] => b1909932aac1c5510c044de0cb8c0f3ef049a250
+    [name] => WordPress
+    [website] => https://wordpress.org
+    [license] => GNU General Public License v2.0 only
+    [description] => WordPress is open source software you can use to create a beautiful website, blog, or app.
+    [enhanced] => 
+    [tile_background] => dark
+    [icon] => wordpress.svg
+    [sha] => 0ef26137a5179a972debc881a49dae7fd9c0f61d
+    [class] => \App\SupportedApps\WordPress\WordPress
+)
+  
+[2023-05-29 15:49:05] local.DEBUG: Get app triggered for: f2baa52d02ca888455ce47823f47bf372d5eecb3  
+[2023-05-29 15:49:05] local.DEBUG: Download triggered for stdClass Object
+(
+    [appid] => f2baa52d02ca888455ce47823f47bf372d5eecb3
+    [name] => Nextcloud
+    [website] => https://nextcloud.com
+    [license] => GNU Affero General Public License v3.0 only
+    [description] => Nextcloud is an open source, self-hosted file share and communication platform. Access and sync your files, contacts, calendars and communicate and collaborate across your devices.
+    [enhanced] => 1
+    [tile_background] => light
+    [icon] => nextcloud.svg
+    [config] => stdClass Object
+        (
+            [type] => basic_auth
+            [additional_headers] => stdClass Object
+                (
+                    [OCS-APIRequest] => true
+                )
+
+            [stat1] => stdClass Object
+                (
+                    [name] => Total
+                    [url] => :url:ocs/v1.php/cloud/users/:username:?format=json
+                    [key] => ocs.data.quota.total
+                    [filter] => size
+                    [updateOnChange] => No
+                    [suffix] => 
+                )
+
+            [stat2] => stdClass Object
+                (
+                    [name] => Used
+                    [url] => :url:ocs/v1.php/cloud/users/:username:?format=json
+                    [key] => ocs.data.quota.used
+                    [filter] => size
+                    [updateOnChange] => No
+                    [suffix] => 
+                )
+
+        )
+
+    [sha] => 154ab558feaa115ad0f510e6cf68466566a890de
+    [class] => \App\SupportedApps\Nextcloud\Nextcloud
+)
+  
+[2023-05-29 15:54:09] local.DEBUG: Get app triggered for: 07b796b3a10eaa8b6f485ed2379187a39400b459  
+[2023-05-29 15:54:09] local.DEBUG: Download triggered for stdClass Object
+(
+    [appid] => 07b796b3a10eaa8b6f485ed2379187a39400b459
+    [name] => Portainer
+    [website] => https://portainer.io
+    [license] => zlib License
+    [description] => Portainer is a simple management solution for Docker. Easily manage your Docker hosts and Docker Swarm clusters via Portainer web user interface.
+    [enhanced] => 1
+    [tile_background] => dark
+    [icon] => portainer.svg
+    [sha] => 94a81b07f372894d0b6db212e2bb33681a1c839c
+    [class] => \App\SupportedApps\Portainer\Portainer
+)
+  
+[2023-05-29 15:54:37] local.DEBUG: Get app triggered for: b3e1424fb69ca08481b03ad9d81e95488421997f  
+[2023-05-29 15:54:37] local.DEBUG: Download triggered for stdClass Object
+(
+    [appid] => b3e1424fb69ca08481b03ad9d81e95488421997f
+    [name] => Mattermost
+    [website] => https://mattermost.com
+    [license] => MIT License
+    [description] => Mattermost provides high trust collaboration and messaging solutions through an open source, community-powered approach. Enjoy all the productivity benefits of workplace messaging across web, mobile and PC, with unlimited archiving, search and integrations within IT-controlled private environments in public clouds, including AWS and Azure, as well as on-premise in private clouds and virtual or physical servers.
+    [enhanced] => 
+    [tile_background] => light
+    [icon] => mattermost.png
+    [sha] => 67d3ecbf62cb31ca5b128e86c20de4cebfc9eda5
+    [class] => \App\SupportedApps\Mattermost\Mattermost
+)
+  
+[2023-05-29 15:54:58] local.DEBUG: Get app triggered for: aad8f23c2fa06d46c52ae4e06c8d4bdac6074b8f  
+[2023-05-29 15:54:58] local.DEBUG: Download triggered for stdClass Object
+(
+    [appid] => aad8f23c2fa06d46c52ae4e06c8d4bdac6074b8f
+    [name] => Prometheus
+    [website] => https://prometheus.io
+    [license] => Apache License 2.0
+    [description] => Prometheus, a Cloud Native Computing Foundation project, is a systems and service monitoring system. It collects metrics from configured targets at given intervals, evaluates rule expressions, displays the results, and can trigger alerts if some condition is observed to be true.
+    [enhanced] => 
+    [tile_background] => light
+    [icon] => prometheus.png
+    [sha] => 070ea4fbdd1cfa045a80ff6d8fb0e7a7df5dff71
+    [class] => \App\SupportedApps\Prometheus\Prometheus
+)
+  
+[2023-05-29 16:09:00] local.DEBUG: Get app triggered for: 43784e464f66bfc0254a3bad48939f14a70c878e  
+[2023-05-29 16:09:00] local.DEBUG: Download triggered for stdClass Object
+(
+    [appid] => 43784e464f66bfc0254a3bad48939f14a70c878e
+    [name] => pgAdmin
+    [website] => https://www.pgadmin.org
+    [license] => PostgreSQL License
+    [description] => pgAdmin is a feature rich open-source administration and development platform for PostgreSQL.
+    [enhanced] => 
+    [tile_background] => dark
+    [icon] => pgadmin.png
+    [sha] => 9f10a4132859247241b29512b7e7963ed27d962f
+    [class] => \App\SupportedApps\pgAdmin\pgAdmin
+)
+  
